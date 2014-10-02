@@ -3,24 +3,19 @@ package org.dev_module.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "clente_name")
-public class Cliente {
+@PrimaryKeyJoinColumn(name = "id_endereco")
+public class Cliente extends Endereco {
 
-	@Id
-	@GeneratedValue
-	private Long id;
 	private String tipoPessoa;
 	private String cnpj;
 	private String inscricaoEstadual;
@@ -40,10 +35,6 @@ public class Cliente {
 	@ManyToOne(targetEntity = User.class)
 	@JoinColumn(name = "user_id")
 	private User usuario = new User();
-
-	@OneToOne
-	@JoinColumn(name = "endereco_id")
-	private Endereco endereco;
 
 	@OneToOne
 	@JoinColumn(name = "contato_id")
@@ -108,14 +99,6 @@ public class Cliente {
 		this.contato = contato;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	public String getTipoPessoa() {
 		return tipoPessoa;
 	}
@@ -130,14 +113,6 @@ public class Cliente {
 
 	public void setUsuario(User usuario) {
 		this.usuario = usuario;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNome() {

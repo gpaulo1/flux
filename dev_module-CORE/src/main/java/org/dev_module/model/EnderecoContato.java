@@ -1,17 +1,14 @@
 package org.dev_module.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class EnderecoContato {
+@PrimaryKeyJoinColumn(name = "endereco_id")
+public class EnderecoContato extends Endereco{
 
-	@Id
-	@GeneratedValue
-	private Long id;
 	private String tipoPessoa;
 	private String tipoEndereco;
 	private String documento;
@@ -33,14 +30,6 @@ public class EnderecoContato {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getTipoPessoa() {
