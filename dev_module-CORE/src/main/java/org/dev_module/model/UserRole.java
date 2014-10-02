@@ -17,11 +17,11 @@ import javax.persistence.UniqueConstraint;
 public class UserRole {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name = "user_role_id", unique = true, nullable = false)
 	private Integer userRoleId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "username", nullable = false)
 	private User user;
 

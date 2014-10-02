@@ -2,10 +2,10 @@ package net.com.dev_web.configuration;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
-public class MvcWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer{
+public class MvcWebApplicationInitializer {
 
-	protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { SecurityConfig.class };
-    }
+//	protected Class<?>[] getRootConfigClasses() {
+//        return new Class[] { SecurityConfig.class };extends AbstractSecurityWebApplicationInitializer
+//    }
 	
 }

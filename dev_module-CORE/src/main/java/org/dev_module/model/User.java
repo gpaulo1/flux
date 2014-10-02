@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,24 +31,55 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<UserRole> userRole = new ArrayList<UserRole>();
 
-	public User(){
-		
+	@ManyToMany
+	@JoinTable(name = "user_caixas")
+	private List<Caixa> caixas = new ArrayList<Caixa>();
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Cliente> clientes = new ArrayList<Cliente>();
+
+	public User() {
+
 	}
-	
+
 	public User(String username, String password, boolean enabled) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 	}
-	
-	public User(String username, String password, 
-			boolean enabled, List<UserRole> userRole) {
-			this.username = username;
-			this.password = password;
-			this.enabled = enabled;
-			this.userRole = userRole;
-		}
-	
+
+	public User(String username, String password, boolean enabled,
+			List<UserRole> userRole) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.userRole = userRole;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public List<Caixa> getCaixas() {
+		return caixas;
+	}
+
+	public void setCaixas(List<Caixa> caixas) {
+		this.caixas = caixas;
+	}
+
 	public String getUsername() {
 		return username;
 	}

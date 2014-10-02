@@ -22,7 +22,7 @@ import com.jolbox.bonecp.BoneCPDataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"org.dev_module.repository"})
-@ComponentScan(basePackages = { "org.dev_module.service","org.dev_module.service.impl","org.dev_module.repository" })
+@ComponentScan(basePackages = { "org.dev_module.service","org.dev_module.service.impl","org.dev_module.repository","org.dev_module.query" })
 @PropertySource("classpath:application.properties")
 public class ApplicationContext {
 
@@ -65,7 +65,7 @@ public class ApplicationContext {
 				em.getRequiredProperty("hibernate.ejb.naming_strategy"));
 		prop.put("hibernate.show_sql",
 				em.getRequiredProperty("hibernate.show_sql"));
-
+		
 		local.setJpaProperties(prop);
 		return local;
 	}

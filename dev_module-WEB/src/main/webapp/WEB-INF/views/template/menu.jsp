@@ -7,9 +7,27 @@
 <%@ page isELIgnored="false"%>
 
 <div class="ui teal large menu">
-	<a class="active item" href="test"> <i class="home icon"></i> Home
-	</a> <a class="item" href="planejamento"> <i class="mail icon"></i> Planejamento
-	</a>1
+	<a class="active item" href="/dev_module-WEB/test"> <i
+		class="home icon"></i> Home
+	</a> <a class="item" href="/dev_module-WEB/planejamento"> <i
+		class="mail icon"></i> Planejamento
+	</a>
+	<div class="ui dropdown item">
+		Cliente <i class="dropdown icon"></i>
+		<div class="menu">
+			<a class="item" href="/dev_module-WEB/cliente/novo">Novo</a> <a
+				class="item" href="/dev_module-WEB/cliente/listar">Consultar</a> <a
+				class="item">Spanish</a>
+		</div>
+	</div>
+	<div class="ui dropdown item">
+		Fornecedor <i class="dropdown icon"></i>
+		<div class="menu">
+			<a class="item" href="/dev_module-WEB/cliente/novo">Novo</a> <a
+				class="item" href="/dev_module-WEB/cliente/listar">Consultar</a> <a
+				class="item">Spanish</a>
+		</div>
+	</div>
 	<div class="right menu">
 		<div class="item">
 			<div class="ui icon input">

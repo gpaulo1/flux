@@ -23,9 +23,9 @@ import com.jolbox.bonecp.BoneCPDataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = { "org.dev_module.repository" })
 @ComponentScan(basePackages = { "org.dev_module.service",
-		"org.dev_module.service.impl", "org.dev_module.repository" })
+		"org.dev_module.service.impl", "org.dev_module.repository", "org.dev_module.query" })
 @PropertySource("classpath:application-test.properties")
-public class AplicationContext {
+public class AplicationContextTeste {
 
 	private static final Logger log = Logger
 			.getLogger(ApplicationContext.class);

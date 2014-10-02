@@ -7,15 +7,19 @@
 <%@ page isELIgnored="false"%>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
 
 <title>dev_module - WEB</title>
 
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/semantic.js"></script>
-<script type="text/javascript" src="js/charts.js"></script>
-<script type="text/javascript" src="js/highcharts.js"></script>
-<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery-2.1.1.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/semantic.js" />"></script> 
+<script type="text/javascript" src="<c:url value="/js/charts.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/highcharts.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/menu.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.dataTables.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/validation.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery.maskMoney.js" />"></script>
 
-<link rel="stylesheet" type="text/css" href="css/semantic.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/semantic.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery.dataTables.css" />" />
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

@@ -16,43 +16,43 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service("userDetailsService")
-public class AuthUserDetailService implements UserDetailsService {
+//@Service("userDetailsService")
+public class AuthUserDetailService  {
 
-	@Autowired
-	private UserService userService;
-
-	public UserDetails loadUserByUsername(final String username)
-			throws UsernameNotFoundException {
-
-		org.dev_module.model.User user = userService.findByUserName(username);
-		List<GrantedAuthority> authorities = buildUserAuthority(user
-				.getUserRole());
-
-		return buildUserForAuthentication(user, authorities);
-
-	}
-
-	// Converts com.mkyong.users.model.User user to
-	// org.springframework.security.core.userdetails.User
-	private User buildUserForAuthentication(org.dev_module.model.User user,
-			List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), user.getPassword(),
-				user.isEnabled(), true, true, true, authorities);
-	}
-
-	private List<GrantedAuthority> buildUserAuthority(List<UserRole> userRoles) {
-		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
-
-		// Build user's authorities
-		for (UserRole userRole : userRoles) {
-			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
-		}
-
-		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(
-				setAuths);
-
-		return Result;
-	}
+//	@Autowired implements UserDetailsService
+//	private UserService userService;
+//
+//	public UserDetails loadUserByUsername(final String username)
+//			throws UsernameNotFoundException {
+//
+//		org.dev_module.model.User user = userService.findByUserName(username);
+//		List<GrantedAuthority> authorities = buildUserAuthority(user
+//				.getUserRole());
+//
+//		return buildUserForAuthentication(user, authorities);
+//
+//	}
+//
+//	// Converts com.mkyong.users.model.User user to
+//	// org.springframework.security.core.userdetails.User
+//	private User buildUserForAuthentication(org.dev_module.model.User user,
+//			List<GrantedAuthority> authorities) {
+//		return new User(user.getUsername(), user.getPassword(),
+//				user.isEnabled(), true, true, true, authorities);
+//	}
+//
+//	private List<GrantedAuthority> buildUserAuthority(List<UserRole> userRoles) {
+//		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+//
+//		// Build user's authorities
+//		for (UserRole userRole : userRoles) {
+//			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+//		}
+//
+//		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(
+//				setAuths);
+//
+//		return Result;
+//	}
 
 }

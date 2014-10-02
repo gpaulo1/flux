@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.JsonEncoding;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +17,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
+import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "net.com.dev_web.controller","org.dev_web.security" })
-@Import(value = { org.dev_module.configuration.ApplicationContext.class,
-		SecurityConfig.class })
+@Import(value = { org.dev_module.configuration.ApplicationContext.class})
 public class ApplicationContext extends WebMvcConfigurerAdapter {
 
 	private static final String DEFINICAO_TILES_PADRAO_GLOBAL = "/WEB-INF/web-tiles.xml";
@@ -70,6 +72,22 @@ public class ApplicationContext extends WebMvcConfigurerAdapter {
 		return config;
 	}
 
+	@Bean
+	public ObjectMapper objectMapper() {
+		org.codehaus.jackson.map.ObjectMapper objectMapper = new org.codehaus.jackson.map.ObjectMapper();
+		return objectMapper;
+	}
+	
+	@Bean
+	public MappingJacksonJsonView mappingJacksonJsonView() {
+		MappingJacksonJsonView mappingJacksonJsonView = new MappingJacksonJsonView();
+		mappingJacksonJsonView.setContentType("application/json");
+		mappingJacksonJsonView.setObjectMapper(this.objectMapper());
+		mappingJacksonJsonView.setEncoding(JsonEncoding.UTF8);
+		mappingJacksonJsonView.setPrefixJson(false);
+		return mappingJacksonJsonView;
+	}
+	
 	@Bean
 	public ContentNegotiatingViewResolver contentNegotiatingViewResolver() {
 		List<ViewResolver> viewResolvers = new ArrayList<ViewResolver>();

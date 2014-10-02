@@ -12,7 +12,7 @@
 	<div class="header">Registro inserido com sucesso!</div>
 </div>
 
-<div class="ui error form segment">
+<div class="ui form segment">
 	<div class="ui ribbon label">Dados pessoais</div>
 	<div class="one field">
 		<div class="field">
