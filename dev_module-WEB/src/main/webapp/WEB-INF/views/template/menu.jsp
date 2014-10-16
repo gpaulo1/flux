@@ -15,17 +15,8 @@
 	<div class="ui dropdown item">
 		Cliente <i class="dropdown icon"></i>
 		<div class="menu">
-			<a class="item" href="/dev_module-WEB/cliente/novo">Novo</a> <a
-				class="item" href="/dev_module-WEB/cliente/listar">Consultar</a> <a
-				class="item">Spanish</a>
-		</div>
-	</div>
-	<div class="ui dropdown item">
-		Fornecedor <i class="dropdown icon"></i>
-		<div class="menu">
-			<a class="item" href="/dev_module-WEB/cliente/novo">Novo</a> <a
-				class="item" href="/dev_module-WEB/cliente/listar">Consultar</a> <a
-				class="item">Spanish</a>
+			<a class="item" href="<c:url value="/cliente/novo" />">Novo</a> <a
+				class="item" href="<c:url value="/cliente/listar" />">Consultar</a>
 		</div>
 	</div>
 	<div class="right menu">

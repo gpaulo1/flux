@@ -9,6 +9,8 @@
 
 <script type="text/javascript" src="<c:url value="/js/mask.js" />"></script>
 
+<script type="text/javascript" src="<c:url value="/js/block-UI.js" />"></script>
+
 <script type="text/javascript"
 	src="<c:url value="/js/cliente-fornecedor/cadastrar.js" />"></script>
 
@@ -24,62 +26,73 @@
 	src="<c:url value="/js/jquery.dataTables.js" />"></script>
 
 <div class="ui form segment">
-	<c:if test="${msg != null}">
-		<div class="ui green message">${msg}</div>
-	</c:if>
+
+	<div class="ui green message" id="message-success"
+		style="display: none;">
+		<i class="close icon"></i>Registro cadastrado com sucesso no sistema!
+	</div>
+	<div class="ui red message" style="display: none;" id="message-error">
+		<i class="close icon"></i>Ocorreu um problema ao cadastrar o registro!
+	</div>
 	<div class="one field">
 		<div class="field">
 			<h4 class="ui inverted teal block header">Informações Pessoais</h4>
 		</div>
 	</div>
+	<form:form action="/scai_projectV-web/aluno-cadastrar/" method="POST"
+		modelAttribute="cliente" class="form-horizontal" id="form-main"
+		name="userForm">
+		<div class="three fields">
+			<div class="field">
+				<label>Tipo de pessoa</label>
+				<div class="ui fluid selection dropdown ">
+					<div class="text" data-value="JURIDICA">Jurídica</div>
+					<i class="dropdown icon"></i> <input type="hidden" name="gender"
+						value="JURIDICA" id="slc-tp-pessoa"></input>
+					<div class="menu ">
+						<div class="item" data-value="JURIDICA">Jurídica</div>
+						<div class="item" data-value="FISICA">Física</div>
+					</div>
+				</div>
+			</div>
+			<div class="field fl-cpf-IP">
 
-	<div class="three fields">
-		<div class="field">
-			<label>Tipo de pessoa</label>
-			<div class="ui fluid mini selection dropdown">
-				<div class="text" data-value="JURIDICA">Jurídica</div>
-				<i class="dropdown icon"></i> <input type="hidden" name="gender"
-					id="slc-tp-pessoa"></input>
-				<div class="menu">
-					<div class="item" data-value="JURIDICA">Jurídica</div>
-					<div class="item" data-value="FISICA">Física</div>
+				<form:label path="cpf">CPF</form:label>
+				<div class="ui mini left labeled icon input">
+					<form:input type="text" placeholder="Cadastro de pessoa fisíca" path="cpf"
+						class="inp-cpf" id="inp-cpf"></form:input> <i class="info letter icon"></i>
+				</div>
+			</div>
+
+			<div class="field fl-cnpj-IP">
+
+				<form:label path="cnpj">CNPJ</form:label>
+				<div class="ui mini left labeled icon input">
+					<form:input type="text" placeholder="Cadastro de CNPJ"
+						class="inp-cnpj" id="inp-cnpj" path="cnpj"></form:input>
+					<i class="info letter icon"></i>
+				</div>
+			</div>
+
+			<div class="field fl-insc_estadual-IP">
+
+				<form:label path="inscricaoEstadual">Inscrição Estadual</form:label>
+				<div class="ui mini left labeled icon input">
+					<form:input type="text" placeholder="Inscrição Estadual" path="inscricaoEstadual"
+						class="inp-inscricao-estadual"></form:input> <i
+						class="info letter icon"></i>
+				</div>
+			</div>
+			<div class="field fl-rg-IP">
+
+				<form:label path="rg">RG</form:label>
+				<div class="ui mini left labeled icon input">
+					<form:input type="text" id="inp-rg" placeholder="Registro Geral" path="rg"></form:input>
+					<i class="info letter icon"></i>
 				</div>
 			</div>
 		</div>
-		<div class="field fl-cpf-IP">
-
-			<label>CPF</label>
-			<div class="ui mini left labeled icon input">
-				<input type="text" placeholder="Cadastro de pessoa fisíca"
-					class="inp-cpf"></input> <i class="info letter icon"></i>
-			</div>
-		</div>
-		<div class="field fl-cnpj-IP">
-
-			<label>CNPJ</label>
-			<div class="ui mini left labeled icon input">
-				<input type="text" placeholder="Cadastro de CNPJ" class="inp-cnpj"></input>
-				<i class="info letter icon"></i>
-			</div>
-		</div>
-		<div class="field fl-insc_estadual-IP">
-
-			<label>Inscrição Estadual</label>
-			<div class="ui mini left labeled icon input">
-				<input type="text" placeholder="Inscrição Estadual"
-					class="inp-inscricao-estadual"></input> <i class="info letter icon"></i>
-			</div>
-		</div>
-		<div class="field fl-rg-IP">
-
-			<label>RG</label>
-			<div class="ui mini left labeled icon input">
-				<input type="text" id="inp-rg" placeholder="Registro Geral"></input>
-				<i class="info letter icon"></i>
-			</div>
-		</div>
-	</div>
-
+	</form:form>
 
 	<!-- ********************************* INICIO | INFORMAÇÕES PESSOAIS (PESSOA JURIDICA - ROW 02) ********************************* -->
 
@@ -88,10 +101,10 @@
 		<div class="field fl-razao_social-IP">
 
 			<label>Razão Social</label>
-			<div class="ui mini left labeled icon input">
-				<input type="text" placeholder="Nome completo" id="inp-razao-social"
-					class="inp-inscricao-estadual"></input> <i
-					class="info letter icon"></i>
+			<div class="ui mini left labeled icon input"
+				id="class-inp-razao-social">
+				<input type="text" placeholder="Razão social" id="inp-razao-social"
+					class="inp-inscricao-estadual"></input> <i class="info letter icon"></i>
 			</div>
 		</div>
 		<div class="field fl-fantasia-IP">
@@ -130,10 +143,9 @@
 		<div class="field fl-nome-IP">
 
 			<label>Nome</label>
-			<div class="ui mini left labeled icon input">
+			<div class="ui mini left labeled icon input" id="class-inp-nome">
 				<input type="text" placeholder="Nome completo" id="inp-nome"
-					class="inp-inscricao-estadual"></input> <i
-					class="info letter icon"></i>
+					class="inp-inscricao-estadual"></input> <i class="info letter icon"></i>
 			</div>
 		</div>
 
@@ -193,8 +205,8 @@
 		<div class="field">
 			<label>Cidade</label>
 			<div class="ui mini left labeled icon input">
-				<input type="text" placeholder="Cidade" id="inp-cidade"></input>
-				<i class="location arrow icon"></i>
+				<input type="text" placeholder="Cidade" id="inp-cidade"></input> <i
+					class="location arrow icon"></i>
 			</div>
 		</div>
 		<div class="field">
@@ -247,7 +259,7 @@
 		<div class="field">
 			<label>Telefone</label>
 			<div class="ui mini left labeled icon input">
-				<input type="text" placeholder="Telefone principal"
+				<input type="text" placeholder="Telefone principal" class="inp-tel"
 					id="inp-telefone"></input> <i class="phone icon"></i>
 			</div>
 		</div>
@@ -266,16 +278,16 @@
 			<div class="field">
 				<label>Nome do Contato</label>
 				<div class="ui mini left labeled icon input">
-					<input type="text" placeholder="Pessoa de contato"></input>
-					<i class="user icon"></i>
+					<input type="text" placeholder="Pessoa de contato"
+						id="inp-cont-nome"></input> <i class="user icon"></i>
 				</div>
 			</div>
 			<div class="field">
 
 				<label>Data de Nascimento</label>
 				<div class="ui mini left labeled icon input">
-					<input type="text" placeholder="Data de nascimento" class="date"></input>
-					<i class="info letter icon"></i>
+					<input type="text" placeholder="Data de nascimento" class="date"
+						id="inp-cont-data-nascimento"></input> <i class="info letter icon"></i>
 				</div>
 			</div>
 		</div>
@@ -284,23 +296,24 @@
 				<label>Telefone</label>
 				<div class="ui mini left labeled icon input">
 					<input type="text" placeholder="Telefone de contato"
-						class="inp-tel"></input> <i class="phone icon"></i>
+						id="inp-cont-telefone" class="inp-tel"></input> <i
+						class="phone icon"></i>
 				</div>
 			</div>
 			<div class="field">
 
 				<label>Ramal</label>
 				<div class="ui mini left labeled icon input">
-					<input type="text" placeholder="Ramal de contato"></input>
-					<i class="phone icon"></i>
+					<input type="text" placeholder="Ramal de contato"
+						id="inp-cont-ramal"></input> <i class="phone icon"></i>
 				</div>
 			</div>
 			<div class="field">
 
 				<label>Fax</label>
 				<div class="ui mini left labeled icon input">
-					<input type="text" placeholder="Fax de contato" class="inp-tel"></input>
-					<i class="phone icon"></i>
+					<input type="text" placeholder="Fax de contato" id="inp-cont-fax"
+						class="inp-tel"></input> <i class="phone icon"></i>
 				</div>
 			</div>
 		</div>
@@ -308,16 +321,17 @@
 			<div class="field">
 				<label>Celular</label>
 				<div class="ui mini left labeled icon input">
-					<input type="text" placeholder="Celular de contato" class="inp-tel"></input>
-					<i class="mobile icon"></i>
+					<input type="text" placeholder="Celular de contato"
+						id="inp-cont-celular" class="inp-tel"></input> <i
+						class="mobile icon"></i>
 				</div>
 			</div>
 			<div class="field">
 
 				<label>Email</label>
 				<div class="ui mini left labeled icon input">
-					<input type="text" placeholder="Email de contato"></input>
-					<i class="mail icon"></i>
+					<input type="text" placeholder="Email de contato"
+						id="inp-cont-email"></input> <i class="mail icon"></i>
 				</div>
 			</div>
 		</div>
@@ -325,8 +339,8 @@
 			<div class="field">
 				<label>Web Site</label>
 				<div class="ui mini left labeled icon input">
-					<input type="text" placeholder="ex: www.empresaexemplo.com.br"></input>
-					<i class="url icon"></i>
+					<input type="text" placeholder="ex: www.empresaexemplo.com.br"
+						id="inp-cont-site"></input> <i class="url icon"></i>
 				</div>
 			</div>
 		</div>
@@ -384,7 +398,7 @@
 
 					<label>CNPJ</label>
 					<div class="ui mini left labeled icon input">
-						<input type="text" placeholder="Número do CNPJ"
+						<input type="text" placeholder="Número do CNPJ" class="inp-cnpj"
 							id="inp-cnpj-endereco"></input> <i class="info letter icon"></i>
 					</div>
 				</div>
@@ -392,7 +406,7 @@
 
 					<label>CPF</label>
 					<div class="ui mini left labeled icon input">
-						<input type="text" placeholder="Número do CPF"
+						<input type="text" placeholder="Número do CPF" class="inp-cpf"
 							id="inp-cpf-endereco"></input> <i class="info letter icon"></i>
 					</div>
 				</div>
@@ -487,13 +501,15 @@
 					</div>
 				</div>
 			</div>
-			<a class="ui green button" id="add-row">Adicionar</a>
+			<div class="ui teal button entrada" id="add-row">
+				<i class="add sign box icon"></i> Adicionar
+			</div>
 		</div>
 	</div>
 	<div class="ui section divider"></div>
 	<div class="ui center aligned three column grid">
 		<div class="ui teal button entrada" id="btn-salvar-registro">
-			<i class="user icon"></i> Salvar Cliente
+			<i class="save icon"></i> Salvar Cliente
 		</div>
 	</div>
 </div>
@@ -503,14 +519,19 @@
 	});
 
 	jQuery(function($) {
-		$(".date").mask("99/99/9999");
-		$("#inp-cnpj").mask("99.999.999/9999-99");
+		$(".date").mask("9999-99-99");
+		$(".inp-cnpj").mask("99.999.999/9999-99");
 		$(".inp-cep").mask("99.999-999");
 		$(".inp-cpf").mask(" 999.999.999-99");
 		$(".inp-tel").mask("(99) 99999-9999");
 	});
 
 	$(document).ready(function() {
+
+		$('.message .close').on('click', function() {
+			$(this).closest('.message').fadeOut();
+		});
+
 		$('#tbl_enderecos').DataTable();
 	});
 </script>

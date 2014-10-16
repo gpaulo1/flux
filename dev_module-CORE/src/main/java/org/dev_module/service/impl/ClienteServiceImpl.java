@@ -1,14 +1,19 @@
 package org.dev_module.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javassist.NotFoundException;
 
 import javax.annotation.Resource;
 
+import org.dev_module.BO.FormatarClienteFornecedorBO;
+import org.dev_module.dto.ClienteFindMainDTO;
 import org.dev_module.model.Cliente;
+import org.dev_module.query.ClienteQuery;
 import org.dev_module.repository.ClienteRepository;
 import org.dev_module.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mysema.query.types.Predicate;
@@ -18,6 +23,9 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Resource
 	private ClienteRepository repository;
+
+	@Autowired
+	private ClienteQuery clienteQuery;
 
 	public List<Cliente> buscarTodos() throws NotFoundException {
 
@@ -35,14 +43,18 @@ public class ClienteServiceImpl implements ClienteService {
 
 		return repository.findAll();
 	}
-
+	
 	public Cliente salvar(Cliente cliente) throws Exception {
 
 		if (cliente == null) {
 			throw new Exception("Objeto cliente está nullo!");
 		}
 
-		return repository.save(cliente);
+		cliente.setDataCadastro(new Date());
+		cliente.setStatus(true);
+
+		return repository.save(FormatarClienteFornecedorBO
+				.formatInputs(cliente));
 
 	}
 
@@ -52,7 +64,10 @@ public class ClienteServiceImpl implements ClienteService {
 			throw new NotFoundException("Identificador do cliente está nullo!");
 		}
 
-		repository.delete(id);
+		Cliente retorno = this.buscasRegistro(id);
+		retorno.setStatus(false);
+
+		repository.save(retorno);
 
 	}
 
@@ -76,4 +91,25 @@ public class ClienteServiceImpl implements ClienteService {
 		return repository.findOne(condicao);
 	}
 
+	public List<ClienteFindMainDTO> buscarClientesToShow()
+			throws NotFoundException {
+		return clienteQuery.findLast10Clientes();
+	}
+
+	public List<ClienteFindMainDTO> filterAllClientes()
+			throws NotFoundException {
+
+		return clienteQuery.filterAllClientes();
+
+	}
+
+	public List<ClienteFindMainDTO> filterAllEmpresas()
+			throws NotFoundException {
+		return clienteQuery.filterAllEmpresas();
+	}
+
+	public List<ClienteFindMainDTO> filterByName(String value) throws NotFoundException {
+		return clienteQuery.findByName(value);
+	}
+	
 }

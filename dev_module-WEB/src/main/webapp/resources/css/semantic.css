@@ -1715,6 +1715,7 @@ body > .ui.grid {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.02);
 }
+
 .ui.menu .ui.dropdown.item.active {
   background-color: rgba(0, 0, 0, 0.02);
   -webkit-box-shadow: none;

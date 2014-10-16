@@ -1,21 +1,33 @@
 package org.dev_module.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "clente_name")
-@PrimaryKeyJoinColumn(name = "id_endereco")
-public class Cliente extends Endereco {
+public class Cliente {
 
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String tipoPessoa;
 	private String cnpj;
 	private String inscricaoEstadual;
@@ -32,16 +44,56 @@ public class Cliente extends Endereco {
 	private String telefone;
 	private String celular;
 
-	@ManyToOne(targetEntity = User.class)
-	@JoinColumn(name = "user_id")
-	private User usuario = new User();
+	@Temporal(TemporalType.DATE)
+	private Date dataCadastro;
+	private Boolean status;
 
-	@OneToOne
+	// @ManyToOne(targetEntity = User.class, cascade = CascadeType.PERSIST)
+	// @JoinColumn(name = "user_id")
+	// private User usuario = new User();
+
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "contato_id")
 	private Contato contato;
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "localizacao_id")
+	private Localizacao localizacao;
+
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private List<EnderecoContato> endContatos = new ArrayList<EnderecoContato>();
+
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(Date dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Localizacao getLocalizacao() {
+		return localizacao;
+	}
+
+	public void setLocalizacao(Localizacao localizacao) {
+		this.localizacao = localizacao;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getCnpj() {
 		return cnpj;
@@ -107,13 +159,13 @@ public class Cliente extends Endereco {
 		this.tipoPessoa = tipoPessoa;
 	}
 
-	public User getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
-	}
+	// public User getUsuario() {
+	// return usuario;
+	// }
+	//
+	// public void setUsuario(User usuario) {
+	// this.usuario = usuario;
+	// }
 
 	public String getNome() {
 		return nome;

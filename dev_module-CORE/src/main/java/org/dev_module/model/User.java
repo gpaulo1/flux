@@ -35,8 +35,8 @@ public class User {
 	@JoinTable(name = "user_caixas")
 	private List<Caixa> caixas = new ArrayList<Caixa>();
 
-	@OneToMany(mappedBy = "usuario")
-	private List<Cliente> clientes = new ArrayList<Cliente>();
+//	@OneToMany(mappedBy = "usuario")
+//	private List<Cliente> clientes = new ArrayList<Cliente>();
 
 	public User() {
 
@@ -56,13 +56,13 @@ public class User {
 		this.userRole = userRole;
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
+//	public List<Cliente> getClientes() {
+//		return clientes;
+//	}
+//
+//	public void setClientes(List<Cliente> clientes) {
+//		this.clientes = clientes;
+//	}
 
 	public Boolean getEnabled() {
 		return enabled;

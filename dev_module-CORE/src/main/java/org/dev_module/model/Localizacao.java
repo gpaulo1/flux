@@ -3,31 +3,27 @@ package org.dev_module.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-
-import org.hibernate.annotations.GeneratorType;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Endereco {
+public class Localizacao {
 
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String bairro;
 	private String cidade;
+	private String complemento;
 	private String cep;
 	private String logradouro;
 	private String numero;
 	private String estado;
 
-	public String getEstado() {
-		return estado;
+	public String getComplemento() {
+		return complemento;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	public Long getId() {
@@ -76,6 +72,14 @@ public abstract class Endereco {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

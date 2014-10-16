@@ -5,6 +5,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.test.annotation.Timed;
 
 @Entity
 public class Contato {
@@ -13,7 +17,10 @@ public class Contato {
 	@GeneratedValue
 	private Long id;
 	private String pessoaContato;
+	
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
+	
 	private String telefone;
 	private String ramal;
 	private String fax;

@@ -52,7 +52,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-mapper-asl/1.9.13/jackson-mapper-asl-1.9.13.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.4.1/jackson-annotations-2.4.1.jar"/>
-	<classpathentry kind="var" path="M2_REPO/postgresql/postgresql/9.0-801.jdbc4/postgresql-9.0-801.jdbc4.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/jolbox/bonecp-spring/0.8.0.RELEASE/bonecp-spring-0.8.0.RELEASE.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/jolbox/bonecp/0.8.0.RELEASE/bonecp-0.8.0.RELEASE.jar"/>
 	<classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>

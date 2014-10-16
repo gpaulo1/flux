@@ -22,7 +22,7 @@ $(document).ready(function() {
 			//deslizar pagina ao expandir
 			$('html, body').animate({
 			    scrollTop: $(this).offset().top
-			  }, 1000);
+			  }, 200);
 			//end
 			
 			active = true;
@@ -143,6 +143,40 @@ $(document).ready(function() {
     //END
     
 });
+
+function clearAllInputs(){
+	$("#inp-cnpj").val("");
+	$("#inp-cpf").val("");
+	$("#inp-inscricao-estadual").val("");
+	$("#inp-rg").val("");
+	$("#inp-razao-social").val("");
+	$("#inp-fantasia").val("");
+	$("#inp-inscricao-municipal").val("");
+	$("#inp-nome").val("");
+	$("#inp-email").val("");
+	$("#inp-telefone").val("");
+	$("#inp-bairro").val("");
+	$("#inp-cont-nome").val("");
+	$("#inp-cont-telefone").val("");
+	$("#inp-cont-ramal").val("");
+	$("#inp-cont-fax").val("");
+	$("#inp-cont-celular").val("");
+	$("#inp-cont-email").val("");
+	$("#inp-cont-site").val("");
+	$("#inp-bairro").val("");
+	$("#inp-cidade").val("");
+	$("#inp-cep").val("");
+	$("#inp-endereco").val("");
+	$("#inp-numero").val("");
+	$("#inp-estado").val("");
+	
+	var table = $('#tbl_enderecos').DataTable();
+	 
+	table
+	    .clear()
+	    .draw();
+	
+}
 
 function tpPessoa(){
 	if($("#slc-tp-pessoa-endereco").val() == 'CPF'){
