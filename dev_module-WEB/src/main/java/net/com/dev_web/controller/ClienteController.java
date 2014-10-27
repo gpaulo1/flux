@@ -46,6 +46,8 @@ public class ClienteController {
 			RedirectAttributes redirect) {
 		ModelAndView view = new ModelAndView(REDIRECT_NOVO_CLIENTE);
 
+		System.out.println("passou cliente salvar");
+		
 		try {
 			clienteService.salvar(cliente);
 		} catch (Exception e) {

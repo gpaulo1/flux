@@ -9,6 +9,8 @@
 <div class="ui teal large menu">
 	<a class="active item" href="/dev_module-WEB/test"> <i
 		class="home icon"></i> Home
+	</a><a class="active item" href="#" id="menu-teste"> <i
+		class="home icon"></i> 
 	</a> <a class="item" href="/dev_module-WEB/planejamento"> <i
 		class="mail icon"></i> Planejamento
 	</a>
@@ -17,6 +19,12 @@
 		<div class="menu">
 			<a class="item" href="<c:url value="/cliente/novo" />">Novo</a> <a
 				class="item" href="<c:url value="/cliente/listar" />">Consultar</a>
+		</div>
+	</div>
+	<div class="ui dropdown item">
+		Financeiro <i class="dropdown icon"></i>
+		<div class="menu">
+			<a class="item" href="<c:url value="/account-receivable/show" />">Contas a Pagar</a>
 		</div>
 	</div>
 	<div class="right menu">

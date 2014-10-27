@@ -1,161 +1,35 @@
 $(document).ready(function() {
 
+	var urlSolution = "/dev_module-WEB"; 
+	
 $("#choice-1").click(function(){
 	
-	hideMsgs();
+	ajaxRequestFunc("get", urlSolution+"/cliente/find-all");
 	
-	$("#tbl-main").block({ message: "Carregando..." });
-		$.ajax({
-			type : "get",
-			url : '/dev_module-WEB/cliente/find-all',
-			statusCode : {
-				200 : function(data) {
-					console.log("cjaso: " + data.length);
-					var t = $('#tbl-main').DataTable();
-					t.clear().draw();
-					
-					for(var i = 0; i < data.length; i++){
-						console.log("cjaso: " + data[i].id);																						 
-							
-					        t.row.add( [
-					            identifierTypeOfTpPessoa(data[i]),
-					            checkTypeOfRegistry(data[i]),
-					            checkTypeOfDocument(data[i]),
-					            data[i].telefone,
-					            "<a href='/dev_module-WEB/cliente/editar/"+ data[i].id +"' class='ui twitter mini right pointing dropdown icon button'>"+
-								"<i class='hide icon'></i>"	+
-								"</a>",
-								"<div class='ui mini primary right pointing dropdown icon button desativar' onclick='removerregistro(this)' idcliente='"+ data[i].id +"' >" +
-								"<i class='remove icon'></i>"+
-								"</div>"
-					        ] ).draw();
-					};
-					$('#tbl-main').unblock(); 
-				},																																																																	
-				404 : function(data) {
-					$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				},
-				400 : function(data) {
-					$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				},
-				500 : function(data) {
-					$("#message-error").text("Ocorreu um problema no servidor ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				}
-			}
-		}).done(function() {
-
-		});
-		
-	});
+});
 	
-	$("#choice-2").click(function(){
+$("#choice-2").click(function(){
 		
-		hideMsgs();
+	ajaxRequestFunc("get", urlSolution+"/cliente/find-clientes", "user");
 		
-		$("#tbl-main").block({ message: "Carregando..." });
-		$.ajax({
-			type : "get",
-			url : '/dev_module-WEB/cliente/find-clientes',
-			statusCode : {
-				200 : function(data) {
-					console.log("cjaso: " + data.length);
-					var t = $('#tbl-main').DataTable();
-					t.clear().draw();
-					
-					for(var i = 0; i < data.length; i++){
-						console.log("cjaso: " + data[i].id);
-							
-					        t.row.add( [
-					            "<i class='user icon popup' data-content='Pessoa Fisíca'></i>",
-					            data[i].nome,
-					            data[i].cpf,
-					            data[i].telefone,
-								"<a href='/dev_module-WEB/cliente/editar/"+ data[i].id +"'' class='ui twitter mini right pointing dropdown icon button'>"+
-								"<i class='hide icon'></i>"	+ 
-								"</a>",
-								"<a href='#' class='ui mini primary right pointing dropdown icon button'>" +
-								"<i class='remove icon'></i>"+
-								"</a>"
-					        ] ).draw();
-					};
-					$('#tbl-main').unblock(); 
-				},
-				404 : function(data) {
-					$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				},
-				400 : function(data) {
-					$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				},
-				500 : function(data) {
-					$("#message-error").text("Ocorreu um problema no servidor ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				}
-			}
-		}).done(function() {
-
-		});
-		
-	});
+});
 	
 	
 $("#choice-3").click(function(){
 	
-	hideMsgs();
-	
-	$("#tbl-main").block({ message: "Carregando..." });
-	
-		$.ajax({
-			type : "get",
-			url : '/dev_module-WEB/cliente/find-empresas',  
-			statusCode : {
-				200 : function(data) {
-					console.log("cjaso: " + data.length);
-					var t = $('#tbl-main').DataTable();
-					t.clear().draw();
-					
-					for(var i = 0; i < data.length; i++){
-							
-					        t.row.add( [
-					            "<i class='building icon popup' data-content='Pessoa Jurídica'></i>",
-					            data[i].fantasia,
-					            data[i].cnpj, 
-					            data[i].telefone,
-								"<a href='/dev_module-WEB/cliente/editar/"+ data[i].id +"'' class='ui twitter mini right pointing dropdown icon button'>"+
-								"<i class='hide icon'></i>"	+ 
-								"</a>",
-								"<a href='#' class='ui mini primary right pointing dropdown icon button'>" +
-								"<i class='remove icon'></i>"+
-								"</a>"
-					        ] ).draw();
-					};
-					$('#tbl-main').unblock(); 
-					
-					
-				},
-				404 : function(data) {
-					$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				},
-				400 : function(data) {
-					$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				},
-				500 : function(data) {
-					$("#message-error").text("Ocorreu um problema no servidor ao pesquisar registros recentes!")
-					$("#message-error").show(200);
-				}
-			}
-		}).done(function() {
-
-		});
+	ajaxRequestFunc("get", urlSolution+"/cliente/find-empresas", "building");
 		
-	});
+});
 	
+$("#btn-find-by-name").click(function(){
+	
+	console.log("entrou");
+	
+	ajaxRequestFunc("get", urlSolution+"/cliente/find-by-name/"+ $("#inp-value-find").val(), null);
+	
+
+});
+
 	$(".desativar").click(function() {
 
 		console.log("ksdnjsdfn");
@@ -197,64 +71,13 @@ $("#choice-3").click(function(){
 
 	});
 	
-	$("#btn-find-by-name").click(function(){
-		
-		$("#tbl-main").block({ message: "Carregando..." });
-		
-		var value = $("#inp-value-find").val();
-		
-		$.ajax({
-			type : "get",
-			url : '/dev_module-WEB/cliente/find-by-name/' + value,
-			statusCode : {
-				200 : function(data) {
-					
-					var t = $('#tbl-main').DataTable();
-					t.clear().draw();
-					
-					for(var i = 0; i < data.length; i++){
-							
-					        t.row.add( [
-					            "<i class='user icon popup' data-content='Pessoa Fisíca'></i>",
-					            data[i].nome,
-					            data[i].cpf,
-					            data[i].telefone,
-								"<a href='/dev_module-WEB/cliente/editar/"+ data[i].id +"'' class='ui twitter mini right pointing dropdown icon button'>"+
-								"<i class='hide icon'></i>"	+ 
-								"</a>",
-								"<a href='#' class='ui mini primary right pointing dropdown icon button'>" +
-								"<i class='remove icon'></i>"+
-								"</a>"
-					        ] ).draw();
-					};
-					
-					$('#tbl-main').unblock(); 
-					
-				},
-				404 : function(data) {
-					$('#tbl-main').unblock(); 
-					$("#message-error").text("Ocorreu um erro ao pesquisar o registro!").show(200);
-				},
-				400 : function(data) {
-					$('#tbl-main').unblock(); 
-					$("#message-error").text("Ocorreu um erro ao pesquisar o registro!").show(200);
-				},
-				500 : function(data) {
-					$('#tbl-main').unblock(); 
-					$("#message-error").text("Ocorreu um erro no servidor ao pesquisar o registro!").show(200);
-				}
-			}
-		
-	});
-
-});
 });
 
 function hideMsgs(){
 	$("#message-success").hide();
 	$("#message-error").hide();
 }
-
+ 
 function identifierTypeOfTpPessoa(data){
 	if(data.tipoPessoa == "FISICA"){
     	return "<i class='user icon popup' data-content='Pessoa Fisíca'></i>"
@@ -324,3 +147,57 @@ function checkTypeOfDocument(data){
 		return data.cnpj;
 	}
 }
+
+function ajaxRequestFunc(type, url, icon){
+	
+	hideMsgs();
+	
+	$("#tbl-main").block({ message: "Carregando..." });
+	
+	$.ajax({
+		type : type,
+		url : url ,
+		statusCode : {
+			200 : function(data) {
+				var t = $('#tbl-main').DataTable();
+				t.clear().draw();
+				
+				for(var i = 0; i < data.length; i++){
+						
+				        t.row.add( [
+				            "<i class='"+ icon +" icon popup' data-content='Pessoa Jurídica'></i>",
+				            checkTypeOfRegistry(data[i]),
+				            checkTypeOfDocument(data[i]), 
+				            data[i].telefone,
+							"<a href='/dev_module-WEB/cliente/editar/"+ data[i].id +"'' class='ui twitter mini right pointing dropdown icon button'>"+
+							"<i class='hide icon'></i>"	+ 
+							"</a>",
+							"<a href='#' class='ui mini primary right pointing dropdown icon button'>" +
+							"<i class='remove icon'></i>"+
+							"</a>"
+				        ] ).draw();
+				};
+				$('#tbl-main').unblock(); 
+				
+				
+			},
+			404 : function(data) {
+				$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
+				$("#message-error").show(200);
+			},
+			400 : function(data) {
+				$("#message-error").text("Ocorreu um problema ao pesquisar registros recentes!")
+				$("#message-error").show(200);
+			},
+			500 : function(data) {
+				$("#message-error").text("Ocorreu um problema no servidor ao pesquisar registros recentes!")
+				$("#message-error").show(200);
+			}
+		}
+	}).done(function() {
+
+	});
+	
+}
+
+

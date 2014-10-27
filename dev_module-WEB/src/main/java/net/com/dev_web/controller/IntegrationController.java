@@ -16,6 +16,9 @@ public class IntegrationController {
 	@RequestMapping(value = "/test")
 	public ModelAndView index() {
 		ModelAndView  view = new ModelAndView("index");
+		
+		System.out.println("aquuuuuuuuuuu");
+		
 		App app = new App();
 		view.addObject("App", app);
 		return view;

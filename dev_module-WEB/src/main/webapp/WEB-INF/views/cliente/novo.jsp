@@ -11,6 +11,8 @@
 
 <script type="text/javascript" src="<c:url value="/js/block-UI.js" />"></script>
 
+<script type="text/javascript" src="<c:url value="/js/mascaras.js" />"></script>
+
 <script type="text/javascript"
 	src="<c:url value="/js/cliente-fornecedor/cadastrar.js" />"></script>
 
@@ -516,14 +518,6 @@
 <script type="text/javascript">
 	$("#send-form").click(function() {
 		$("#form-cliente").submit();
-	});
-
-	jQuery(function($) {
-		$(".date").mask("9999-99-99");
-		$(".inp-cnpj").mask("99.999.999/9999-99");
-		$(".inp-cep").mask("99.999-999");
-		$(".inp-cpf").mask(" 999.999.999-99");
-		$(".inp-tel").mask("(99) 99999-9999");
 	});
 
 	$(document).ready(function() {

@@ -63,6 +63,17 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private List<EnderecoContato> endContatos = new ArrayList<EnderecoContato>();
 
+	@OneToMany(mappedBy = "cliente")
+	private List<AccountReceivable> accountReceivable = new ArrayList<AccountReceivable>();
+
+	public List<AccountReceivable> getAccountReceivable() {
+		return accountReceivable;
+	}
+
+	public void setAccountReceivable(List<AccountReceivable> accountReceivable) {
+		this.accountReceivable = accountReceivable;
+	}
+
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}

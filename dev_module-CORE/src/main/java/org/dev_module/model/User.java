@@ -31,12 +31,15 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
 	private List<UserRole> userRole = new ArrayList<UserRole>();
 
+	@OneToMany(mappedBy = "user")
+	private List<AccountReceivable> accountsReveivable = new ArrayList<AccountReceivable>();
+
 	@ManyToMany
 	@JoinTable(name = "user_caixas")
 	private List<Caixa> caixas = new ArrayList<Caixa>();
 
-//	@OneToMany(mappedBy = "usuario")
-//	private List<Cliente> clientes = new ArrayList<Cliente>();
+	// @OneToMany(mappedBy = "usuario")
+	// private List<Cliente> clientes = new ArrayList<Cliente>();
 
 	public User() {
 
@@ -56,16 +59,24 @@ public class User {
 		this.userRole = userRole;
 	}
 
-//	public List<Cliente> getClientes() {
-//		return clientes;
-//	}
-//
-//	public void setClientes(List<Cliente> clientes) {
-//		this.clientes = clientes;
-//	}
+	// public List<Cliente> getClientes() {
+	// return clientes;
+	// }
+	//
+	// public void setClientes(List<Cliente> clientes) {
+	// this.clientes = clientes;
+	// }
 
 	public Boolean getEnabled() {
 		return enabled;
+	}
+
+	public List<AccountReceivable> getAccountsReveivable() {
+		return accountsReveivable;
+	}
+
+	public void setAccountsReveivable(List<AccountReceivable> accountsReveivable) {
+		this.accountsReveivable = accountsReveivable;
 	}
 
 	public void setEnabled(Boolean enabled) {
