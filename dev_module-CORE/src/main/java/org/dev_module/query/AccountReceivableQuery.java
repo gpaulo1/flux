@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.dev_module.dto.AccountReceivableDTO;
-import org.dev_module.model.AccountReceivable;
 import org.dev_module.model.QAccountReceivable;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +26,9 @@ public class AccountReceivableQuery {
 
 		return query
 				.from(predicate)
-				.orderBy(predicate.dataVencimento.desc())
+				.orderBy(predicate.dataVencimento.asc())
 				.list(Projections.fields(AccountReceivableDTO.class,
-						predicate.id, predicate.dataVencimento,
+						predicate.id, predicate.dataVencimento, predicate.valor,
 						predicate.descricao, predicate.formaPagamento));
 
 	}

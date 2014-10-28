@@ -24,7 +24,7 @@
 	<div class="ui dropdown item">
 		Financeiro <i class="dropdown icon"></i>
 		<div class="menu">
-			<a class="item" href="<c:url value="/account-receivable/show" />">Contas a Pagar</a>
+			<a class="item" href="<c:url value="/account-receivable" />">Contas a Receber</a>
 		</div>
 	</div>
 	<div class="right menu">

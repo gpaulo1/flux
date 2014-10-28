@@ -34,6 +34,8 @@ $(document).ready(function() {
 		
 		if(op == true){
 			$("#form-id").submit();
+		}else{
+			$("#bar-one").addClass("active");
 		}
 		
 	});
