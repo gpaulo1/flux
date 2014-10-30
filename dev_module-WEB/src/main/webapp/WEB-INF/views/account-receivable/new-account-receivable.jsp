@@ -7,7 +7,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page isELIgnored="false"%>
 
-
 <script type="text/javascript" src="<c:url value="/js/mask.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/mascaras.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/account-receivable/validator.js" />"></script>
@@ -249,3 +248,4 @@
 		});
 	});
 </script>
+
